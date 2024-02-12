@@ -1,0 +1,18 @@
+default: &dev
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV["DB_HOST"] || "localhost" %>
+  port: <%= ENV["DB_PORT"] || "5432" %>
+  username: <%= ENV["DB_USERNAME"] || "postgres" %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  pool: <%= ENV["DB_POOL"] || 8 %>
+  timeout: 5000
+  schema_search_path: 'movies,public'
+
+development:
+  <<: *dev
+  database: <%= ENV["DB_NAME"] || "defaultdb" %>
+
+production:
+  <<: *dev
+  database: <%= ENV["DB_NAME"] %>

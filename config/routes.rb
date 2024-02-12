@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'movies#index'
+  get 'movies/obtain_movies', to: 'movies#obtain_movies'
 end

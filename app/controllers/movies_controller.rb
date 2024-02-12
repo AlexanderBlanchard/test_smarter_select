@@ -3,9 +3,12 @@ class MoviesController < ApplicationController
 
   def index
     @greeting = 'Hola'
-    @movies = Movie.includes(:genres, :cast_members, :production_companies, :keywords, :languages)
-                   .limit(2)
-                   .map do |movie|
+  end
+
+  def obtain_movies
+    movies = Movie.includes(:genres, :cast_members, :production_companies, :keywords, :languages)
+                  .paginate(page: params[:page], per_page: 5)
+                  .map do |movie|
       {
         id: movie.id,
         name: movie.title,
@@ -17,6 +20,7 @@ class MoviesController < ApplicationController
       }
     end
 
-    puts @movies.inspect
+    total_pages = (Movie.count / 5.0).ceil
+    render json: { movies:, total_pages: }
   end
 end

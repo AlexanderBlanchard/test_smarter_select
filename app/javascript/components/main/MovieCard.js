@@ -4,16 +4,16 @@ const MovieCard = ({ movie }) => {
   return (
     <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out flex flex-row max-h-80">
       {/* Poster Column */}
-      <div className="w-1/3 bg-gray-200 flex justify-center items-center overflow-hidden">
+      <div className="w-1/4 bg-gray-200 flex justify-center items-center overflow-hidden">
         <div className="text-xl font-semibold text-gray-800">Poster</div>
       </div>
 
       {/* Movie Info Column */}
-      <div className="w-1/3 p-4 flex flex-col justify-between">
+      <div className="w-1/2 p-4 flex flex-col justify-between">
         <div>
           <h2 className="font-bold text-lg mb-2">{movie.name}</h2>
-          <p className="text-sm text-gray-600 mb-2">Genres: {movie.genres.join(', ')}</p>
-          <p className="text-sm text-gray-600 mb-2">Languages: {movie.languages.join(', ')}</p>
+          <p className="text-sm font-bold text-gray-600 mb-2">Genres: {movie.genres.join(', ')}</p>
+          <p className="text-sm font-bold text-gray-600 mb-2">Languages: {movie.languages.join(', ')}</p>
         </div>
         <div className="flex flex-wrap -m-1 overflow-y-auto max-h-40">
           {movie.keywords.map((keyword, index) => (

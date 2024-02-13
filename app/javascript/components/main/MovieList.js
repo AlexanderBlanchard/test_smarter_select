@@ -14,7 +14,7 @@ const MovieList = ({ initialMovies }) => {
 
   const fetchMovies = (page) => {
     axios.get(`/movies/obtain_movies?page=${page}`)
-      .then(response => {
+    .then(response => {
         setMovies(response.data.movies);
         setTotalPages(response.data.total_pages);
       })
@@ -24,9 +24,8 @@ const MovieList = ({ initialMovies }) => {
   };
   
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-4 mt-8 bg-white shadow-lg rounded-lg border border-gray-200">
       <h1 className="text-4xl font-bold text-center mb-6">Smarter Select Test</h1>
-      {/* Aquí puedes añadir tu filtro de búsqueda si es necesario */}
       <div className="grid grid-cols-1 gap-4">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />

@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 # app/use_cases/list_movies_use_case.rb
 module Movies
   class ListMoviesUseCase < ApplicationUseCase
     def initialize(params)
+      super()
       @params = params
     end
 
@@ -12,7 +15,7 @@ module Movies
     end
 
     attr_accessor :params
-    
+
     private
 
     def list
@@ -23,17 +26,13 @@ module Movies
 
     def obtain_movies
       response = Movies::MoviesQuery.call(@params)
-
-      puts "La cache es : #{Rails.cache.read("movies_query:#{@params.to_json}")}"
-
-
       raise(response[:error]) if response[:success?] == false
 
       response[:payload]
     end
 
     def process_movies(movies_query)
-      mo = movies_query.map do |movie|
+      movies_query.map do |movie|
         {
           id: movie.id,
           name: movie.title,
@@ -49,11 +48,9 @@ module Movies
           languages: movie.languages.map(&:language_name),
           keywords: movie.keywords.map(&:keyword_name),
           cast: movie.cast_members.map { |person| person.person_name},
-          production: movie.production_companies.map { |company| company.company_name},
           movie_country: movie.movie_country.map { |country| country.country_name},
         }
       end
-
     end
 
     def json_response(movies_data, total_entries, total_pages)
@@ -63,6 +60,5 @@ module Movies
         total_pages:
       }
     end
-
   end
 end

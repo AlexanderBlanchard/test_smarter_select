@@ -33,10 +33,6 @@ Rails/TableNameAssignment:
   Exclude:
     - app/models/**/*.rb
 
-RSpec/ExampleLength:
-  Max: 10
-  Exclude:
-
 Metrics/MethodLength:
   Enabled: false
   Max: 15
@@ -625,12 +621,6 @@ Layout/BlockAlignment:
 Style/StringConcatenation:
   Exclude:
 
-RSpec/MessageSpies:
-  Exclude:
-
-RSpec/ContextWording:
-  Exclude:
-
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
   SupportedStylesAlignWith:
@@ -638,29 +628,14 @@ Layout/EndAlignment:
     - variable
     - start_of_line
 
-RSpec/MessageExpectation:
-  Exclude:
-
-RSpec/VerifiedDoubles:
-  Exclude:
-
 Style/MethodCalledOnDoEndBlock:
-  Exclude:
-
-RSpec/VerifiedDoubleReference:
   Exclude:
 
 Rails/InverseOf:
   Exclude:
 
-RSpec/NamedSubject:
-  Exclude:
-
 Lint/NumberConversion:
   Enabled: false
-
-RSpec/PredicateMatcher:
-  Exclude:
 
 Layout/DefEndAlignment:
   EnforcedStyleAlignWith: start_of_line
@@ -1159,23 +1134,6 @@ Naming/VariableNumber:
 Lint/ConstantResolution:
   Enabled: false
 
-RSpec/AlignRightLetBrace:
-  Enabled: false
-
-Style/StaticClass:
-  Exclude:
-
-RSpec/AlignLeftLetBrace:
-  Enabled: false
-
-RSpec/MultipleMemoizedHelpers:
-  Max: 10
-  Exclude:
-
-RSpec/MultipleExpectations:
-  Max: 3
-  Exclude:
-
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -1186,25 +1144,6 @@ Rails/EnvironmentVariableAccess:
   AllowReads: true
 
 Rails/LexicallyScopedActionFilter:
-  Exclude:
-
-RSpec/NestedGroups:
-  Max: 4
-  Exclude:
-
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-
-Style/FormatStringToken:
-  Exclude:
-
-RSpec/AnyInstance:
-  Exclude:
-
-RSpec/NoExpectationExample:
-  Exclude:
-
-RSpec/RepeatedExampleGroupBody:
   Exclude:
 
 Style/MissingElse:

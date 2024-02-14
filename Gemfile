@@ -4,14 +4,7 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
-
 gem 'react-rails', '3.1.1'
-gem 'sidekiq', '7.2.0'
-# An extension to the sidekiq message processing to track your jobs
-gem 'sidekiq-status', '3.0.3'
-
-# PgSearch builds Active Record named scopes that take advantage of PostgreSQL's full text search
-gem 'pg_search', '2.3.6'
 # will_paginate provides a simple API for performing paginated queries with Active Record
 gem 'will_paginate', '4.0.0'
 
@@ -66,15 +59,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   
-  gem 'foreman'
   gem 'rubocop', '1.59.0', require: false
   gem 'rubocop-performance', '1.20.1', require: false
   # Automatic Rails code style checking tool. A RuboCop extension focused on enforcing Rails best practices and
   # coding conventions
   gem 'rubocop-rails', '2.23.1', require: false
 
-  # Code style checking for RSpec files. A plugin for the RuboCop code style enforcing & linting tool
-  gem 'rubocop-rspec', '2.25.0', require: false
   # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema
   gem 'annotate', '3.2'
 

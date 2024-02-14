@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoviesController < ApplicationController
   require 'will_paginate/array'
 
@@ -20,5 +22,4 @@ class MoviesController < ApplicationController
   def movies_filter_params
     params.permit(:page, :per_page, :name, :genre, :language, :cast_name)
   end
-  
 end

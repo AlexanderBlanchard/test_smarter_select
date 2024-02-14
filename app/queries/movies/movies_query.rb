@@ -4,10 +4,22 @@ module Movies
       @params = params
     end
 
+    # def call
+    #   response(success: true, payload: query_movies)
+    # rescue => error
+    #   response(error: error)
+    # end
+
+
     def call
-      response(success: true, payload: query_movies)
+      cache_key = build_cache_key(@params)
+      cached_result = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+        query_movies
+      end
+      
+      response(success: true, payload: cached_result)
     rescue => error
-      response(error:)
+      response(error: error)
     end
 
     def query_movies
@@ -20,6 +32,10 @@ module Movies
     end
 
     private
+
+    def build_cache_key(params)
+      "movies_query:#{params.to_json}"
+    end
 
     def filter_by_name(movies, name)
       movies.where('title ILIKE ?', "%#{name}%")
@@ -34,8 +50,8 @@ module Movies
     end
 
     def filter_by_cast_name(movies, cast_name)
-      movies.joins(:cast_members).where('cast_members.person_name ILIKE ?', "%#{cast_name}%")
-    end
+      movies.joins(movie_casts: :person).where('person.person_name ILIKE ?', "%#{cast_name}%")
+    end    
 
     def paginate_movies(movies)
       page = @params[:page] || 1

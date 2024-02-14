@@ -6,10 +6,8 @@ class MoviesController < ApplicationController
   end
 
   def obtain_movies
-    parameters = params.slice(:name, :genre, :language, :cast_name, :page, :per_page)
+    parameters = movies_filter_params
     result = Movies::ListMoviesUseCase.call(parameters)
-
-    puts result[:payload]
     render(json: result[:payload])
   end
 
@@ -19,4 +17,8 @@ class MoviesController < ApplicationController
     (Movie.count / (params[:per_page] || 10).to_f).ceil
   end
 
+  def movies_filter_params
+    params.permit(:page, :per_page, :name, :genre, :language, :cast_name)
+  end
+  
 end

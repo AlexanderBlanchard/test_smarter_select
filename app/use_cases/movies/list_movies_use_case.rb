@@ -23,6 +23,10 @@ module Movies
 
     def obtain_movies
       response = Movies::MoviesQuery.call(@params)
+
+      puts "La cache es : #{Rails.cache.read("movies_query:#{@params.to_json}")}"
+
+
       raise(response[:error]) if response[:success?] == false
 
       response[:payload]

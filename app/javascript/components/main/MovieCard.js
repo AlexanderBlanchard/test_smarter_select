@@ -5,7 +5,10 @@ const MovieCard = ({ movie }) => {
     <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out flex flex-row max-h-80">
       {/* Poster Column */}
       <div className="w-1/4 bg-gray-200 flex justify-center items-center overflow-hidden">
-        <div className="text-xl font-semibold text-gray-800">Poster</div>
+        <div className="w-full md:w-full flex flex-col justify-center items-center h-full bg-gray-200 p-4">
+              <i className="fas fa-camera fa-5x text-gray-500 mb-4"></i>
+              <span className="text-gray-500 text-xl">Under Construction</span>
+            </div>
       </div>
 
       {/* Movie Info Column */}

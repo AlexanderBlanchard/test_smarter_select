@@ -1,3 +1,12 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer components {
+  .circle-bg {
+    @apply text-gray-200;
+  }
+  .circle-progress {
+    @apply text-green-400;
+  }
+}

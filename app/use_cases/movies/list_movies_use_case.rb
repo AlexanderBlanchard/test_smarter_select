@@ -37,10 +37,20 @@ module Movies
         {
           id: movie.id,
           name: movie.title,
+          overview: movie.overview,
+          release_date: movie.release_date,
+          tagline: movie.tagline,
+          vote_average: movie.vote_average,
+          homepage: movie.homepage,
+          status: movie.movie_status,
+          revenue: movie.revenue,
+          budget: movie.budget,
           genres: movie.genres.map(&:genre_name),
           languages: movie.languages.map(&:language_name),
           keywords: movie.keywords.map(&:keyword_name),
-          cast: movie.cast_members.map { |person| person.person_name }
+          cast: movie.cast_members.map { |person| person.person_name},
+          production: movie.production_companies.map { |company| company.company_name},
+          movie_country: movie.movie_country.map { |country| country.country_name},
         }
       end
 

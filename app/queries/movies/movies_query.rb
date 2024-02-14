@@ -4,13 +4,6 @@ module Movies
       @params = params
     end
 
-    # def call
-    #   response(success: true, payload: query_movies)
-    # rescue => error
-    #   response(error: error)
-    # end
-
-
     def call
       cache_key = build_cache_key(@params)
       cached_result = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
@@ -23,7 +16,7 @@ module Movies
     end
 
     def query_movies
-      movies = Movie.includes(:genres, :cast_members, :languages, :keywords)
+      movies = Movie.includes(:genres, :cast_members, :languages, :keywords, :production_companies, :movie_country)
       movies = filter_by_name(movies, @params[:name]) if @params[:name].present?
       movies = filter_by_genre(movies, @params[:genre]) if @params[:genre].present?
       movies = filter_by_language(movies, @params[:language]) if @params[:language].present?

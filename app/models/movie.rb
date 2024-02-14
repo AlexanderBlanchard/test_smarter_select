@@ -13,6 +13,9 @@ class Movie < ApplicationRecord
   has_many :movie_companies, foreign_key: 'movie_id'
   has_many :production_companies, through: :movie_companies, source: :production_company
 
+  has_many :production_country, foreign_key: 'movie_id'
+  has_many :movie_country, through: :production_country, source: :country
+
   # Asociación con palabras clave a través de la tabla de unión movie_keywords
   has_many :movie_keywords, foreign_key: 'movie_id'
   has_many :keywords, through: :movie_keywords

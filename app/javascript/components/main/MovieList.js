@@ -18,8 +18,8 @@ const MovieList = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [filters, setFilters] = useState({
     name: "",
-    genre: "",
-    language: "",
+    genre_id: "",
+    language_id: "",
     cast_name: "",
   })
 
@@ -112,13 +112,13 @@ const MovieList = () => {
 
           <select
             className='border border-gray-300 rounded-md py-2 px-4 text-gray-700 bg-white w-1/5 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-            name='genre'
-            value={filters.genre}
+            name='genre_id'
+            value={filters.genre_id}
             onChange={handleFilterChange}
           >
             <option value=''>Select a genre</option>
             {genres.map((genre) => (
-              <option key={genre.id} value={genre.genre_name}>
+              <option key={genre.id} value={genre.genre_id}>
                 {genre.genre_name}
               </option>
             ))}
@@ -126,13 +126,13 @@ const MovieList = () => {
 
           <select
             className='border border-gray-300 rounded-md py-2 px-4 text-gray-700 bg-white w-1/5 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-            name='language'
-            value={filters.language}
+            name='language_id'
+            value={filters.language_id}
             onChange={handleFilterChange}
           >
             <option value=''>Select a language</option>
             {languages.map((language) => (
-              <option key={language.id} value={language.language_name}>
+              <option key={language.id} value={language.language_id}>
                 {language.language_name}
               </option>
             ))}

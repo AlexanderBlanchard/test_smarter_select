@@ -20,10 +20,10 @@ module Movies
     end
 
     def query_movies
-      movies = Movie.includes(:genres, :cast_members, :languages, :keywords, :movie_country)
+      movies = Movie.all
       movies = filter_by_name(movies, @params[:name]) if @params[:name].present?
-      movies = filter_by_genre(movies, @params[:genre]) if @params[:genre].present?
-      movies = filter_by_language(movies, @params[:language]) if @params[:language].present?
+      movies = filter_by_genre(movies, @params[:genre_id]) if @params[:genre_id].present?
+      movies = filter_by_language(movies, @params[:language_id]) if @params[:language_id].present?
       movies = filter_by_cast_name(movies, @params[:cast_name]) if @params[:cast_name].present?
       paginate_movies(movies)
     end
@@ -38,16 +38,20 @@ module Movies
       movies.where('title ILIKE ?', "%#{name}%")
     end
 
-    def filter_by_genre(movies, genre)
-      movies.joins(:genres).where(genres: { genre_name: genre })
+    def filter_by_genre(movies, genre_id)
+      genre_movie_ids = MovieGenre.where(genre_id:).select(:movie_id)
+      movies.where(movie_id: genre_movie_ids)
     end
 
-    def filter_by_language(movies, language)
-      movies.joins(:languages).where(languages: { language_name: language })
+    def filter_by_language(movies, language_id)
+      language_movie_ids = MovieLanguage.where(language_id:).select(:movie_id)
+      movies.where(movie_id: language_movie_ids)
     end
 
     def filter_by_cast_name(movies, cast_name)
-      movies.joins(movie_casts: :person).where('person.person_name ILIKE ?', "%#{cast_name}%")
+      cast_member_ids = Person.where('person_name ILIKE ?', "%#{cast_name}%").select(:person_id)
+      cast_movie_ids = MovieCast.where(person_id: cast_member_ids).select(:movie_id)
+      movies.where(movie_id: cast_movie_ids)
     end
 
     def paginate_movies(movies)

@@ -20,6 +20,6 @@ class MoviesController < ApplicationController
   end
 
   def movies_filter_params
-    params.permit(:page, :per_page, :name, :genre, :language, :cast_name)
+    params.permit(:page, :per_page, :name, :genre_id, :language_id, :cast_name)
   end
 end
